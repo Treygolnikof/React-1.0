@@ -19,8 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadAndDisplayImgs(images) {
-        let notLoaded = [];
-        let loaded = [];
         let promiseImgs = images.map(loadImg);
 
         return promiseImgs.reduce((previousPromise, currentPromise) => {
@@ -35,20 +33,13 @@ window.addEventListener('DOMContentLoaded', () => {
                     image.setAttribute("src", url);
                     image.style.width = '400px';
                     div.appendChild(image);
-                    loaded.push(url);
                     return Promise.resolve(url);
                 })
                 .catch((url) => {
                     console.error(`Не удалось загрузить изображение по указанному пути: ${url}`);
-                    notLoaded.push(url);
                     return Promise.resolve(url);
                 });
-        }, 
-        Promise.resolve())
-            .then(() => {
-                let res = {loaded, notLoaded};
-                return Promise.resolve(res);
-        });
+        }, Promise.resolve());
     }
     loadAndDisplayImgs(images);
 });
