@@ -33,11 +33,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     image.setAttribute("src", url);
                     image.style.width = '400px';
                     div.appendChild(image);
-                    return Promise.resolve(url);
                 })
                 .catch((url) => {
                     console.error(`Не удалось загрузить изображение по указанному пути: ${url}`);
-                    return Promise.resolve(url);
                 });
         }, Promise.resolve());
     }
