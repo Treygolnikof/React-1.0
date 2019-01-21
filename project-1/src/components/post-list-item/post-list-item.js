@@ -9,7 +9,7 @@ const PostListItem = () => {
                 Hello world
             </span>
             <div className="d-flex justify-content-center align-item-center">
-                <span className = "post-date">{new Date().toLocaleString()}</span>
+                <span className = "post-date">{new Date().toLocaleDateString()}</span>
                 <button
                     type = "button" 
                     className = "btn-star btn-sm">
