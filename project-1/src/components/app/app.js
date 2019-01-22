@@ -9,6 +9,20 @@ import PostAddForm from '../post-add-form';
 import './app.css';
 
 const App = () => {
+    let data = [
+        5,
+        null,
+        undefined,
+        'Блабла',
+        {label: "Going to learn React", important: true, id: "qwefsda"},
+        {label: "That is so good", important: false, id: "sdfaef"},
+        {label: "I need a break...", important: false, id: "dfgzaf"}
+    ]
+
+    data = data.filter((item) => {
+        return typeof(item) == 'object' && item != null;   
+    })
+
     return (
         <div className = "app">
             <AppHeader/>
@@ -16,7 +30,7 @@ const App = () => {
                 <SearchPanel/>
                 <PostStatusFilter/>
             </div>
-            <PostList/>
+            <PostList posts = {data}/>
             <PostAddForm/>
         </div>
     )
