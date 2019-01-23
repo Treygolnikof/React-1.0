@@ -14,13 +14,15 @@ const App = () => {
         null,
         undefined,
         'Блабла',
+        true,
+        [],
         {label: "Going to learn React", important: true, id: "qwefsda"},
         {label: "That is so good", important: false, id: "sdfaef"},
         {label: "I need a break...", important: false, id: "dfgzaf"}
     ]
 
     data = data.filter((item) => {
-        return typeof(item) == 'object' && item != null;   
+        return typeof(item) == 'object' && item != null && Array.isArray(item) === false;   
     })
 
     return (
