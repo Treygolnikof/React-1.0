@@ -7,32 +7,16 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default class PostListItem extends Component {
     constructor(props) {
         super(props);
-        const {important, label} = this.props;
+        const { label } = this.props;
         this.state = {
-            important: important,
-            like: false,
             visibility: false,
             value: label,
             modal: false
         };
-        this.onImportant = this.onImportant.bind(this);
-        this.onLike = this.onLike.bind(this);
         this.onVisibility = this.onVisibility.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggle = this.toggle.bind(this);
-    }
-
-    onImportant() {
-        this.setState(({important}) => ({
-            important: !important
-        }))
-    }
-
-    onLike() {
-        this.setState(({like}) => ({
-            like: !like
-        }))
     }
 
     onVisibility() {
@@ -56,8 +40,8 @@ export default class PostListItem extends Component {
     }
 
     render() {
-        const {onDelete} = this.props;
-        const {important, like, visibility} = this.state;
+        const {onDelete, onToggleImportant, onToggleLiked, important, like} = this.props;
+        const { visibility } = this.state;
         let classNames = 'app-list-item d-flex justify-content-between';
 
         if (important) {
@@ -76,7 +60,7 @@ export default class PostListItem extends Component {
             <div className = {classNames}>
                 <span 
                     className = "app-list-item-label"
-                    onClick = {this.onLike}>
+                    onClick = {onToggleLiked}>
                     {this.state.value}
                 </span>
                 <form 
@@ -106,7 +90,7 @@ export default class PostListItem extends Component {
                     <button
                         type = "button" 
                         className = "btn-star btn-sm"
-                        onClick = {this.onImportant}>
+                        onClick = {onToggleImportant}>
                         <i className = "fa fa-star"></i>
                     </button>
                     <button
