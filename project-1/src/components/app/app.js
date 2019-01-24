@@ -13,26 +13,29 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data : [
+            data : this.filterData([
                 5,
                 null,
                 undefined,
-                true,
                 'Блабла',
+                true,
                 [],
                 {label: "Going to learn React", important: true, id: idGenerator()},
                 {label: "That is so good", important: false, id: idGenerator()},
                 {label: "I need a break...", important: false, id: idGenerator()}
-            ]
+            ])
         };
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
+        this.filterData = this.filterData.bind(this);
+        this.htmlId = idGenerator();
+    }
 
-        this.state.data = this.state.data.filter((item) => {
+    filterData(data) {
+        const dataIn = data.filter((item) => {
             return typeof(item) == 'object' && item != null && Array.isArray(item) === false;   
         })
-
-        this.htmlId = idGenerator();
+        return dataIn;
     }
 
     deleteItem(id) {
