@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import idGenerator from 'react-id-generator';
+// import idGenerator from 'react-id-generator';
 
 import AppHeader from '../app-header';
 import SearchPanel from '../search-panel';
@@ -20,15 +20,19 @@ export default class App extends Component {
                 'Блабла',
                 true,
                 [],
-                {label: "Going to learn React", important: true, id: idGenerator()},
-                {label: "That is so good", important: false, id: idGenerator()},
-                {label: "I need a break...", important: false, id: idGenerator()}
-            ])
+                {label: "Going to learn React", important: true, id: this.idGenerator()},
+                {label: "That is so good", important: false, id: this.idGenerator()},
+                {label: "I need a break...", important: false, id: this.idGenerator()}
+            ]),
         };
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.filterData = this.filterData.bind(this);
-        this.htmlId = idGenerator();
+        // this.htmlId = idGenerator();
+    }
+
+    idGenerator() {
+        return Math.random().toString(36).substr(2, 12);
     }
 
     filterData(data) {
@@ -41,7 +45,7 @@ export default class App extends Component {
     deleteItem(id) {
         this.setState(({data}) => {
             const index = data.findIndex(elem => elem.id === id);
-
+            console.log('Ok');
             const newArr = [...data.slice(0, index), ...data.slice(index + 1)];
 
             return {
@@ -54,7 +58,7 @@ export default class App extends Component {
         const newItem = {
             label: body,
             important: false,
-            id: idGenerator()
+            id: this.idGenerator()
         }
         this.setState(({data}) => {
             const newArr = [...data, newItem];
