@@ -29,8 +29,7 @@ export default class App extends Component {
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.filterData = this.filterData.bind(this);
-        this.onToggleImportant = this.onToggleImportant.bind(this);
-        this.onToggleLiked = this.onToggleLiked.bind(this);
+        this.toggleLikeOrImportant = this.toggleLikeOrImportant.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
         this.onFilterSelect = this.onFilterSelect.bind(this);
     }
@@ -71,15 +70,7 @@ export default class App extends Component {
         })
     }
 
-    onToggleImportant(id) {
-        this.toggleLikeOrImportant('important', id);
-    }
-
-    onToggleLiked(id) {
-        this.toggleLikeOrImportant('like', id);
-    }
-
-    toggleLikeOrImportant(item, id) {
+    toggleLikeOrImportant(id, item) {
         this.setState(({data}) => {
             const index = data.findIndex(elem => elem.id === id);
 
@@ -105,7 +96,7 @@ export default class App extends Component {
         }
 
         return items.filter((item) => {
-            return item.label.indexOf(term) > -1
+            return item.label.toLowerCase().indexOf(term.toLowerCase()) > -1
         });
     }
 
@@ -148,8 +139,8 @@ export default class App extends Component {
                 <PostList 
                     posts = {visiblePosts}
                     onDelete = {this.deleteItem}
-                    onToggleImportant = {this.onToggleImportant}
-                    onToggleLiked = {this.onToggleLiked}/>
+                    toggleImportant = {this.toggleLikeOrImportant}
+                    toggleLiked = {this.toggleLikeOrImportant}/>
                 <PostAddForm
                     onAdd = {this.addItem}/>
             </div>

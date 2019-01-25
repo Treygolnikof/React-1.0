@@ -4,16 +4,16 @@ import PostListItem from '../post-list-item';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import './post-list.css';
 
-const PostList = ({posts, onDelete, onToggleImportant, onToggleLiked}) => {
+const PostList = ({posts, onDeleta, toggleLiked, toggleImportant}) => {
     const elements = posts.map((item) => {
         const {id, ...itemProps} = item;
         return (
             <ListGroupItem key = {id} className = "list-group-item">
                 <PostListItem 
                     {...itemProps}
-                    onDelete = {() => onDelete(id)}
-                    onToggleImportant = {() => onToggleImportant(id)}
-                    onToggleLiked = {() => onToggleLiked(id)}
+                    onDelete = {() => onDeleta(id)}
+                    onToggleImportant = {() => toggleImportant(id, 'important')}
+                    onToggleLiked = {() => toggleLiked(id, 'like')}
                 />
             </ListGroupItem>
         )
