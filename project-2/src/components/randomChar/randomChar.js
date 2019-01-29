@@ -47,7 +47,7 @@ export default class RandomChar extends Component {
         const content = !(loading || error) ? <View char = {char}/> : null;
 
         return (
-            <div>
+            <div className = "bg-white">
                 {errorMessage}
                 {spinner}
                 {content}
@@ -60,7 +60,7 @@ const View = ({char}) => {
     const {name, gender, born, died, culture} = char;
     return (
         <>
-            <ListGroup className = "mb-5">
+            <ListGroup>
                 <ListGroupItem className = "pt-3">
                     <h4 className = "text-center">Random Character: {name}</h4>
                 </ListGroupItem>  
