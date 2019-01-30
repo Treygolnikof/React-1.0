@@ -43,7 +43,8 @@ export default class GotService {
             gender: char.gender,
             born: char.born,
             died: char.died,
-            culture: char.culture
+            culture: char.culture,
+            id: char.url.replace(/[^0-9]/gim, "")
         }
     }
 
