@@ -5,35 +5,29 @@ import './post-list-item.css';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export default class PostListItem extends Component {
-    constructor(props) {
-        super(props);
-        const { label } = this.props;
-        this.state = {
-            visibility: false,
-            value: label,
-            modal: false
-        };
-        this.onVisibility = this.onVisibility.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.toggle = this.toggle.bind(this);
-    }
 
-    onVisibility() {
+    state = {
+        visibility: false,
+        value: this.props.label,
+        modal: false
+    };
+
+
+    onVisibility = ()  => {
         this.setState(({visibility}) => ({
             visibility: !visibility
         }))
     }
 
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({value: event.target.value});
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
     }
 
-    toggle() {
+    toggle = () => {
         this.setState({
           modal: !this.state.modal
         });
@@ -58,9 +52,7 @@ export default class PostListItem extends Component {
 
         return (
             <div className = {classNames}>
-                <span 
-                    className = "app-list-item-label"
-                    onClick = {onToggleLiked}>
+                <span className = "app-list-item-label">
                     {this.state.value}
                 </span>
                 <form 
@@ -95,7 +87,8 @@ export default class PostListItem extends Component {
                     </button>
                     <button
                         type = "button" 
-                        className = "btn-heart btn-sm">
+                        className = "btn-heart btn-sm"
+                        onClick = {onToggleLiked}>
                         <i className = "fa fa-heart"></i>
                     </button>
                     <button

@@ -4,15 +4,11 @@ import { Input } from 'reactstrap';
 import './search-panel.css';
 
 export default class SearchPanel extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            term: ''
-        }
-        this.onUpdateSearch = this.onUpdateSearch.bind(this)
+    state = {
+        term: ''
     }
 
-    onUpdateSearch(e) {
+    onUpdateSearch = (e) => {
         let term = e.target.value;
         this.setState({term});
         this.props.onUpdateSearch(term);
