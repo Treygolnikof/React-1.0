@@ -20,7 +20,7 @@ export default class ItemList extends Component {
             .then(this.onCharLoaded)
             .catch((res) => {
                 this.onError(res.message);
-            });
+            }); 
     }
 
     onCharLoaded = (charList) => {
@@ -54,8 +54,12 @@ export default class ItemList extends Component {
     render() {
         const {charList, loading, error, errorNumber} = this.state;
 
-        if (!charList) {
-            return <Spinner/>
+        if (!charList || loading) {
+            return (
+                <div className = "bg-white">
+                    <Spinner/>
+                </div>
+            )
         }
 
         const items = this.renderItems(charList);
