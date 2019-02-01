@@ -39,11 +39,11 @@ export default class GotService {
 
     _transformCharacter(char) {
         return {
-            name: char.name ? char.name : "Неизвестно",
-            gender: char.gender ? char.gender : "Неизвестно",
-            born: char.born ? char.born : "Неизвестно",
-            died: char.died ? char.died : "Неизвестно",
-            culture: char.culture ? char.culture : "Неизвестно",
+            name: char.name ? char.name : "Unknown",
+            gender: char.gender ? char.gender : "Unknown",
+            born: char.born ? char.born : "Unknown",
+            died: char.died ? char.died : "Unknown",
+            culture: char.culture ? char.culture : "Unknown",
             id: char.url.replace(/[^0-9]/gim, "")
         }
     }
