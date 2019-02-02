@@ -1,31 +1,31 @@
 import React, {Component} from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import GotService from '../../services/gotService'
 import Spinner from '../spinner';
-import './itemList.css';
 import ErrorMessage from '../errorMessage';
 
-export default class ItemList extends Component {
-    gotService = new GotService();
+import './itemList.css';
 
+export default class ItemList extends Component {
     state = {
-        charList: null,
+        itemList: null,
         loading: true,
         error: false,
         errorNumber: ''
     }
 
     componentDidMount() {
-        this.gotService.getAllCharacters()
-            .then(this.onCharLoaded)
+        const {getData} = this.props;
+
+        getData()
+            .then(this.onItemLoaded)
             .catch((res) => {
                 this.onError(res.message);
             }); 
     }
 
-    onCharLoaded = (charList) => {
+    onItemLoaded = (itemList) => {
         this.setState ({
-            charList, 
+            itemList, 
             loading: false
         })
     }
@@ -40,21 +40,23 @@ export default class ItemList extends Component {
 
     renderItems(arr) {
         return arr.map((item) => {
+            const {id} = item;
+            const label = this.props.renderItem(item);
             return (
                 <ListGroupItem 
-                    key = {item.id}
+                    key = {id}
                     className = "item-list"
-                    onClick = {() => this.props.onCharSelected(item.id)}>
-                    {item.name}
+                    onClick = {() => this.props.onItemSelected(id)}>
+                    {label}
                 </ListGroupItem>
             )
         })
     }
 
     render() {
-        const {charList, loading, error, errorNumber} = this.state;
+        const {itemList, loading, error, errorNumber} = this.state;
 
-        if (!charList || loading) {
+        if (!itemList || loading) {
             return (
                 <div className = "bg-white">
                     <Spinner/>
@@ -62,26 +64,22 @@ export default class ItemList extends Component {
             )
         }
 
-        const items = this.renderItems(charList);
+        if (error) {
+            return (
+                <div className = "bg-white">
+                    <ErrorMessage errorNumber = {errorNumber}/>
+                </div>
+            )
+        }
 
-        const errorMessage = error ? <ErrorMessage errorNumber = {errorNumber}/> : null;
-        const content = !(loading || error) ? <View items = {items}/> : null;
+        const items = this.renderItems(itemList);
 
         return (
             <div className = "bg-white">
-                {errorMessage}
-                {content}
+                <ListGroup className = "mb-5">
+                    {items}
+                </ListGroup>
             </div>
         );
     }
-}
-
-const View = ({items}) => {
-    return (
-        <>
-            <ListGroup className = "mb-5">
-                {items}
-            </ListGroup>
-        </>
-    )
 }

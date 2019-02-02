@@ -37,34 +37,44 @@ export default class GotService {
         return this._transformBook(book)
     }
 
-    _transformCharacter(char) {
+    isSet(data) {
+        if (data && data[0] !== '') {
+            return data;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    _transformCharacter = (char) => {
         return {
-            name: char.name ? char.name : "Unknown",
-            gender: char.gender ? char.gender : "Unknown",
-            born: char.born ? char.born : "Unknown",
-            died: char.died ? char.died : "Unknown",
-            culture: char.culture ? char.culture : "Unknown",
+            name: this.isSet(char.name),
+            gender: this.isSet(char.gender),
+            born: this.isSet(char.born),
+            died: this.isSet(char.died),
+            culture: this.isSet(char.culture),
             id: char.url.replace(/[^0-9]/gim, "")
         }
     }
 
-    _transformHouse(house) {
+    _transformHouse = (house) => {
         return {
-            name: house.name,
-            region: house.region,
-            words: house.words,
-            titles: house.titles,
-            overlord: house.overlord,
-            ancestralWeapons: house.ancestralWeapons
+            name: this.isSet(house.name),
+            region: this.isSet(house.region),
+            words: this.isSet(house.words),
+            titles: this.isSet(house.titles),
+            overlord: this.isSet(house.overlord),
+            ancestralWeapons: this.isSet(house.ancestralWeapons),
+            id: house.url.replace(/[^0-9]/gim, "")
         }
     }
 
-    _transformBook(book) {
+    _transformBook = (book) => {
         return {
-            name: book.name,
-            numberOfPages: book.numberOfPages,
-            publiser: book.publiser,
-            released: book.released
+            name: this.isSet(book.name),
+            numberOfPages: this.isSet(book.numberOfPages),
+            publiser: this.isSet(book.publiser),
+            released: this.isSet(book.released),
+            id: book.url.replace(/[^0-9]/gim, "")
         }
     }
 
