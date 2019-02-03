@@ -29,7 +29,7 @@ export default class GotService {
         return this._transformHouse(house)
     }
     getAllBooks = async () => {
-        const res = await this.getResourse('/books?page=2&pageSize=10');
+        const res = await this.getResourse('/books?page=1&pageSize=10');
         return res.map(this._transformBook)
     }
     getBook = async (id) => {
