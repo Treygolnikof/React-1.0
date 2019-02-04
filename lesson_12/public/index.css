@@ -52,25 +52,38 @@
     height: 65px;
     border-radius: 4px;
     margin-top: 34px;
-}
-
-#plus, #minus, #reset {
-    padding-top: 5px;
+    cursor: pointer;
+    float: left;
 }
 
 #plus {
     background: #089C20;
     margin-left: 14px;
+    padding-top: 13px;
+}
+
+#plus:hover {
+    background: rgb(9, 138, 30);
 }
 
 #minus {
     background: #E7AA10;
     margin-left: 38px;
+    padding-top: 28px;
+}
+
+#minus:hover {
+    background: rgb(187, 138, 14);
 }
 
 #reset {
     background: #CF1C1C;
     margin-left: 38px;
+    padding-top: 13px;
+}
+
+#reset:hover {
+    background: rgb(165, 22, 22);
 }
 
 #download {
