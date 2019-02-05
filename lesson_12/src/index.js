@@ -32,13 +32,30 @@ document.getElementById('reset').addEventListener('click', () => {
     store.dispatch(rst())
 });
 document.getElementById('download').addEventListener('click', () => {
-    fetch(process.env.PUBLIC_URL + '/num.json')
+    fetch(process.env.PUBLIC_URL + '/db.json')
     .then(response => response.json())
     .then(data => {
         const randomNum = Math.floor(Math.random() * data.numbers.length);
         const value = data.numbers[randomNum].const;
         store.dispatch(dwnld(value))
     })
+    .catch(err => console.log(err))
+});
+const content = document.getElementById('counter');
+document.getElementById('upload').addEventListener('click', () => {
+    const myData = {
+        saved: content.textContent
+    };
+    
+    fetch('http://localhost:3001/numbers', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(myData)
+    })
+    .then(response => response.json())
     .catch(err => console.log(err))
 });
 
