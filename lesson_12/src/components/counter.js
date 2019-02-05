@@ -7,7 +7,7 @@ const Counter = ({counter, inc, dec, rst, dld}) => {
     
     function uploadCounter() {
         const myData = {
-            saved: counter
+            count: counter
         };
         
         fetch('http://localhost:3001/numbers', {
