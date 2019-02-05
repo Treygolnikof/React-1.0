@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import GotService from '../../services/gotService';
 import Spinner from '../spinner';
-import ErrorMessage from '../errorMessage';
+import {ErrorPage} from '../pages';
 
 const Field = ({item, field, label}) => {
     return (
@@ -22,8 +22,7 @@ export default class ItemDetails extends Component {
     state = {
         item: null,
         error: false,
-        loading: true,
-        errorNumber: ''
+        loading: true
     }
 
     componentDidMount() {
@@ -45,9 +44,8 @@ export default class ItemDetails extends Component {
         })
     }
 
-    onError = (err) => {
+    onError = () => {
         this.setState({
-            errorNumber: err,
             error: true,
             loading: false
         })
@@ -68,9 +66,15 @@ export default class ItemDetails extends Component {
     }
 
     render() {
-        const {loading, item, error, errorNumber} = this.state;
+        const {loading, item, error} = this.state;
 
         const {getLabel} = this.props;
+
+        if (error) {
+            return (
+                <ErrorPage/>
+            )
+        }
 
         if (!item) {
             return (
@@ -87,14 +91,6 @@ export default class ItemDetails extends Component {
                 </div>
             )
         } 
-
-        if (error) {
-            return (
-                <div className = "bg-white">
-                    <ErrorMessage errorNumber = {errorNumber}/>
-                </div>
-            )
-        }
 
         const {name} = item;
 
