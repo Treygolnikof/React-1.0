@@ -44,7 +44,7 @@ document.getElementById('download').addEventListener('click', () => {
 const content = document.getElementById('counter');
 document.getElementById('upload').addEventListener('click', () => {
     const myData = {
-        saved: content.textContent
+        const: content.textContent
     };
     
     fetch('http://localhost:3001/numbers', {
