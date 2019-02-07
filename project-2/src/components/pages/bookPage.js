@@ -4,6 +4,8 @@ import ErrorMessage from '../errorMessage';
 import GotService from '../../services/gotService';
 import {withRouter} from 'react-router-dom';
 
+export {BookPage};
+
 class BookPage extends Component {
     gotService = new GotService();
 
