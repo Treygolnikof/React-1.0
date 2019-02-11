@@ -1,0 +1,56 @@
+.banner {
+    height: 260px;
+    background: url('./img/Coffee_bg.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+.bannerfor {
+    height: 260px;
+    background: url('./img/For_bg.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+.banner .title-big, .bannerfor .title-big {
+    margin-top: 60px;
+}
+
+.shop {
+    padding: 70px 0 40px 0;
+}
+
+.shop .title {
+    margin-top: 10px;
+}
+
+.shop__girl {
+    display: block;
+    margin: 0 auto;
+}
+
+.shop__text {
+    margin-top: 25px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.shop__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shop__point {
+    margin-top: 16px;
+}
+
+.shop__point span {
+    font-weight: bold;
+}
+
+.shop__point-price {
+    font-size: 24px;
+    font-weight: normal !important;
+}
+
+.shop__point-first-child {
+    margin-top: 26px;
+}
