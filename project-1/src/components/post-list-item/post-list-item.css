@@ -1,0 +1,86 @@
+.app-list-item {
+    font-size: 1.25rem;   
+}
+
+.app-list-item button, .app-list-item .btn-accept {
+    width: 35px;
+    height: 35px;
+    margin: auto;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+.app-list-item button:focus {
+    box-shadow: none;
+    outline: none;
+}
+.app-list-item .btn-star, .app-list-item .btn-heart {
+    color: #aeaeae;
+}
+.app-list-item .btn-trash {
+    color: red;
+}
+.app-list-item .btn-edit, .app-list-item .btn-accept{
+    border: 1px solid #17a2b8;
+    width: 50px;
+    margin-right: 10px;
+    transition: 0.2s all;
+    color: #17a2b8;
+}
+
+.app-list-item .btn-edit:hover, .app-list-item .btn-accept:hover {
+    color: #fff;
+    background-color: #17a2b8;
+}
+
+.app-list-item .btn-accept {
+    margin-left: 10px;
+}
+
+.app-list-item .edit-label {
+    display: none;
+}
+
+.app-list-item.visibility .app-list-item-label {
+    display: block;
+}
+/* .app-list-item .fa-heart {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 16px;
+    color: red;
+    transition: 0.3s all;
+    transform: translateX(30px);
+    opacity: 0;
+} */
+
+.app-list-item-label {
+    display: block;
+    line-height: 35px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.5s all;
+}
+
+.app-list-item.like .btn-heart {
+    color: red;
+}
+
+.app-list-item.important .app-list-item-label {
+    color: #FFD700;
+}
+
+.app-list-item.important .btn-star {
+    color: #FFD700;
+}
+
+.app-list-item.visibility .edit-label {
+    display: block;
+}
+
+.app-list-item.visibility .app-list-item-label {
+    display: none;
+}
